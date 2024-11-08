@@ -8,7 +8,7 @@ $user_id = $_POST['user_id'];
 $user_pw = $_POST['user_pw'];
 
 // 데이터베이스 연결 설정
-$conn = mysqli_connect('bbb','toor', 'ggm', 'mydatabase');
+$conn = mysqli_connect('127.0.0.1', 'toor', 'ggm', 'mydatabase');
 
 // 로그인 정보 확인을 위한 SQL 쿼리 작성
 $sql = "SELECT * FROM users WHERE id='$user_id' AND pass='$user_pw'";

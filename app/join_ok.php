@@ -8,13 +8,17 @@ $join_id = $_POST['join_id'];
 $join_pw = $_POST['join_pw'];
 
 // 데이터베이스 연결
-$conn = mysqli_connect('bbb', 'toor', 'ggm', 'mydatabase');
+$conn = mysqli_connect("mysql", "toor", "ggm", "mydatabase");
+
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
 
 // 회원정보 삽입 쿼리
 $sql = "INSERT INTO users (id, pass, name) VALUES ('$join_id', '$join_pw', '$join_name')";
 
 // 쿼리 실행
-if(mysqli_query($conn, $sql)) {
+if (mysqli_query($conn, $sql)) {
     echo "<script>alert('회원가입이 완료되었습니다.');</script>";
     echo "<script>window.location.replace('login.php');</script>";
 } else {

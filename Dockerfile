@@ -1,16 +1,17 @@
-FROM ubuntu:22.04
+# 우분투 최신 버전
+FROM ubuntu:latest
 
-ARG DEBIAN_FRONTEND=noninteractive
+# 필요한 패키지 설치
+RUN apt-get update -y; \
+    apt-get upgrade -y; \
+    apt-get install apache2 -y; \
+    apt-get install php -y; \
+    apt-get install php-mysql -y;
 
-RUN apt update && apt upgrade -y && apt install -y apache2 php
-RUN apt install mysql-server -y
-RUN apt install php-mysql -y
-
-RUN rm -rf /var/www/html/index.html
-COPY ./app/ /var/www/html/
+# COPY ./ssss/ /var/www/html/
 
 
 EXPOSE 80
 
-ENTRYPOINT ["/usr/sbin/apache2ctl"]
-CMD ["-D", "FOREGROUND"]
+# Set the default command to run Apache in the foreground
+CMD ["apache2ctl", "-D", "FOREGROUND"]
